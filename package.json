@@ -1,0 +1,42 @@
+{
+  "name": "vue-tdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "test": "mocha-webpack -w --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
+    "mutation": "stryker run",
+    "watch": "webpack -w -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.7"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^1.0.2",
+    "@stryker-mutator/javascript-mutator": "^1.0.2",
+    "@stryker-mutator/karma-runner": "^1.0.2",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "css-loader": "^2.1.0",
+    "expect": "^24.1.0",
+    "jsdom": "^13.2.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^6.0.1",
+    "mocha-webpack": "^2.0.0-beta.0",
+    "stryker": "^0.35.1",
+    "stryker-html-reporter": "^0.18.1",
+    "stryker-mocha-runner": "^0.17.1",
+    "stryker-vue-mutator": "^0.4.1",
+    "stryker-webpack-transpiler": "^0.9.1",
+    "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.7",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.0"
+  }
+}

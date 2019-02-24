@@ -1,0 +1,5 @@
+.idea/
+.stryker-tmp/
+node_modules/
+dist/
+npm-debug.log
