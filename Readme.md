@@ -1,4 +1,4 @@
-#Vue TDD
+# Vue TDD
 
 This is a quick and dirty Vue components test project using mocha, based on the article by **Stefan Ledin** [Testing Vue Components with Mocha and Webpack](https://itnext.io/testing-vue-components-with-mocha-and-webpack-594a9f7e28b9).
 
