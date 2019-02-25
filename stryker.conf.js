@@ -8,6 +8,8 @@ module.exports = function(config) {
     testRunner: "mocha",
     testFramework: 'mocha',
     transpilers: ['webpack'],
+    plugins: ['css-loader', 'expect', 'jsdom', 'jsdom-global', 'mocha', 'mocha-webpack', 'stryker', 'stryker-html-reporter', 'stryker-mocha-runner', 'stryker-vue-mutator', 'stryker-webpack-transpiler',
+        'vue-loader', 'vue-style-loader', 'vue-template-compiler', 'webpack' ],
     mochaOptions: {
       files: ['dist/test.bundle.js'],
       ui: 'bdd',

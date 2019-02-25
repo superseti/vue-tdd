@@ -25,7 +25,7 @@
     "expect": "^24.1.0",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^6.0.1",
+    "mocha": "^6.0.0-1",
     "mocha-webpack": "^2.0.0-beta.0",
     "stryker": "^0.35.1",
     "stryker-html-reporter": "^0.18.1",
