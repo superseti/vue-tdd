@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
+    "mocha": "mocha dist/test.bundle.js",
     "test": "mocha-webpack -w --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
     "mutation": "stryker run",
     "watch": "webpack -w -d"
