@@ -4,8 +4,10 @@ module.exports = function(config) {
   config.set({
     mutate: ["my-name.vue"],
     mutator: "vue",
-    testRunner: "command",
-    commandRunner: { command: 'npm run mocha' },
+    testRunner: "mocha",
+    mochaOptions: {
+      files: ['test/setup.js', 'dist/test.bundle.js']
+    },
     transpilers: ['webpack'],
     webpack: {
       configFile: 'webpack.test.config.js'

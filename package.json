@@ -21,7 +21,6 @@
     "@stryker-mutator/core": "^1.0.3",
     "@stryker-mutator/html-reporter": "^1.0.3",
     "@stryker-mutator/javascript-mutator": "^1.0.3",
-    "@stryker-mutator/mocha-framework": "^1.0.3",
     "@stryker-mutator/mocha-runner": "^1.0.3",
     "@stryker-mutator/vue-mutator": "^1.0.3",
     "@stryker-mutator/webpack-transpiler": "^1.0.3",
