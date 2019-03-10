@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "mocha": "mocha dist/test.bundle.js",
-    "test": "mocha-webpack -w --webpack-config webpack.config.js --require test/setup.js test/**/*.spec.js",
+    "test": "mocha-webpack -w --webpack-config webpack.config.js --reporter mochawesome --reporter-options reportDir=reports/codeCoverage --require test/setup.js test/**/*.spec.js",
     "mutation": "stryker run",
     "watch": "webpack -w -d"
   },
@@ -31,6 +31,7 @@
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "mocha-webpack": "^2.0.0-beta.0",
+    "mochawesome": "^3.1.1",
     "vue-loader": "^15.6.4",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.7",
