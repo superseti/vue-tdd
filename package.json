@@ -7,7 +7,8 @@
     "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "mocha": "mocha dist/test.bundle.js",
-    "test": "mocha-webpack -w --webpack-config webpack.config.js --reporter mochawesome --reporter-options reportDir=reports/codeCoverage --require test/setup.js test/**/*.spec.js",
+    "test": "mocha-webpack -w --webpack-config webpack.config.js --reporter mochawesome --reporter-options reportDir=reports/tests --require test/setup.js test/**/*.spec.js",
+    "test-coverage": "nyc --reporter=html --report-dir=reports/code-coverage npm test",
     "mutation": "stryker run",
     "watch": "webpack -w -d"
   },
@@ -16,7 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "mocha": "^6.0.2",
-    "vue": "^2.6.7"
+    "vue": "^2.6.7",
+    "vue-router": "^3.0.2"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^1.0.3",
@@ -32,6 +34,7 @@
     "jsdom-global": "^3.0.2",
     "mocha-webpack": "^2.0.0-beta.0",
     "mochawesome": "^3.1.1",
+    "nyc": "^13.3.0",
     "vue-loader": "^15.6.4",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.7",
