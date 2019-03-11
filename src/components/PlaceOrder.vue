@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       drinks: getDrinks(),
-      orderService: OrderService
+      orderService: new OrderService()
     };
   },
   methods: {
@@ -86,7 +86,7 @@ export default {
       this.orderService.currentOrder = this.drinks.filter(
         drink => drink.amount
       );
-      location.href = "Review";
+      this.$router.push("ReviewOrder");
     }
   }
 };
