@@ -1,12 +1,18 @@
 import PlaceOrder from '../../../src/components/PlaceOrder.vue';
-import Vue from 'vue';
+import { mount } from '@vue/test-utils';
+//const jest = require('jest');
+//import jest from 'jest';
 
 describe('PlaceOrder', () => {
 
-  let sut, locationMock;
+  let sut, routerMock;
 
   beforeEach(() => {
-    sut = new Vue(PlaceOrder).$mount();
+    sut = mount(PlaceOrder).vm;
+    routerMock = {
+      push: jest.fn()
+    };
+    sut.$router = routerMock;
   });
 
   it('should have 3 drinks', () => {
@@ -45,6 +51,6 @@ describe('PlaceOrder', () => {
 
   it('should navigate to next page on submit', () => {
     sut.submit();
-    expect(locationMock.path).toHaveBeenCalled();
+    expect(routerMock.push).toHaveBeenCalled();
   });
 });

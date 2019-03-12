@@ -9,7 +9,7 @@
     <router-view></router-view>
     <div class="alert alert-default" role="alert">
       <h4 class="alert-heading">Prrt!</h4>Curious about the
-      <a target="_blank" href="reports/tests/mochawesome.html">code coverage report</a> or the
+      <a target="_blank" href="reports/coverage/index.html">code coverage report</a> or the
       <a target="_blank" href="reports/mutation/html/index.html">mutation testing report</a>?
     </div>
   </div>
