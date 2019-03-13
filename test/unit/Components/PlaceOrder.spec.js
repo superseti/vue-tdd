@@ -1,7 +1,5 @@
 import PlaceOrder from '../../../src/components/PlaceOrder.vue';
 import { mount } from '@vue/test-utils';
-//const jest = require('jest');
-//import jest from 'jest';
 
 describe('PlaceOrder', () => {
 

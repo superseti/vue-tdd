@@ -7,24 +7,31 @@
       <div class="col-12">
         <p>Coming right up! ~bzzzt~</p>
         <form>
-          <router-link to="/" type="button" class="btn btn-primary">New order</router-link>
+          <button type="submit" class="btn btn-primary" @click.stop.prevent="newOrder">New order</button>
         </form>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import { OrderService } from "../services/OrderService.js";
 
 export default {
   data() {
+    var orderService = new OrderService();
     return {
-      numberOfDrinks: new OrderService().currentOrder.reduce(
+      numberOfDrinks: orderService.currentOrder.reduce(
         (numberOfDrinks, drink) => numberOfDrinks + drink.amount,
         0
-      )
+      ),
+      orderService: orderService
     };
+  },
+  methods: {
+    newOrder: function() {
+      this.orderService.clear();
+      this.$router.push("/");
+    }
   }
 };
 </script>
