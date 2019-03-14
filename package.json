@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
-    "mocha": "mocha dist/test.bundle.js",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "mutation": "stryker run",
