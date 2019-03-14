@@ -1,17 +1,24 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import MyName from '../../../src/components/my-name.vue';
 
-const wrapper = mount(MyName);
+let sut, localVue, wrapper;
+
+beforeEach(() => {
+    localVue = createLocalVue();
+    wrapper = shallowMount(MyName, {
+        localVue
+    });
+});
 
 describe('MyName test', () => {
     it('Displays my name when I write it', () => {
 
-        expect(wrapper.vm.$data.name).toBe('My name');
+        expect(wrapper.vm.name).toBe('My name');
 
         const input = wrapper.find('input');
         input.element.value = 'Stefan';
         input.trigger('input');
 
-        expect(wrapper.vm.$data.name).toBe('Stefan');
+        expect(wrapper.vm.name).toBe('Stefan');
     })
 });

@@ -83,6 +83,11 @@ export default {
 
     return dataComponent;
   },
+  mounted() {
+    if (!this.order) {
+      this.$router.push("/");
+    }
+  },
   methods: {
     submit: function() {
       if (!this.ageCheck || this.isAllowedToBuyAlcohol({ age: this.age })) {

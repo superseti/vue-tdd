@@ -1,56 +1,66 @@
-xdescribe('PlaceOrderComponent', () => {
+import ReviewOrder from '../../../src/components/ReviewOrder.vue';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
+import { OrderService } from '../../../src/services/OrderService.js';
 
-    beforeEach(module('robobar'));
+describe('PlaceOrderComponent', () => {
 
-    let sut, locationMock, orderServiceMock, $componentController;
+    let sut, routerMockPush, orderService, localVue, router;
 
-    beforeEach(inject((_$componentController_) => {
-        locationMock = jasmine.createSpyObj('$location', ['path']);
-        orderServiceMock = { currentOrder: [], clear: jasmine.createSpy() };
-        $componentController = _$componentController_;
-    }));
+    beforeEach(() => {
+        localVue = createLocalVue();
+        localVue.use(VueRouter);
+        router = new VueRouter();
+
+        routerMockPush = jest.spyOn(router, 'push');
+        orderService = new OrderService();
+        orderService.currentOrder = [];
+    });
 
     describe('on constructor', () => {
-
         it('should set order, numberOfDrinks and ageCheck properties', () => {
-            orderServiceMock.currentOrder.push({ name: 'Robo Beer', price: 2, amount: 2 });
-            orderServiceMock.currentOrder.push({ name: 'Robo(w)ine', price: 3, amount: 1 });
-            sut = $componentController('roboReviewOrder', {
-                $location: locationMock,
-                orderService: orderServiceMock
-            });
-            expect(sut.order).toBe(orderServiceMock.currentOrder);
+            var order = orderService.currentOrder;
+            order.push({ name: 'Robo Beer', price: 2, amount: 2 });
+            order.push({ name: 'Robo(w)ine', price: 3, amount: 1 });
+            orderService.currentOrder = order;
+
+            sut = shallowMount(ReviewOrder, {
+                localVue,
+                router
+            }).vm;
+
+            expect(sut.order).toEqual(orderService.currentOrder);
         });
 
         it('should navigate back if there is no order', () => {
-            orderServiceMock.currentOrder = null;
-            $componentController('roboReviewOrder', {
-                $location: locationMock,
-                orderService: orderServiceMock
-            });
-            expect(locationMock.path).toHaveBeenCalled();
+            orderService.currentOrder = null;
+            sut = shallowMount(ReviewOrder, {
+                localVue,
+                router
+            }).vm;
+
+            expect(routerMockPush).toHaveBeenCalled();
         });
     });
 
     describe('submit', () => {
         beforeEach(() => {
-            sut = $componentController('roboReviewOrder', {
-                $location: locationMock,
-                orderService: orderServiceMock
-            });
+            sut = shallowMount(ReviewOrder, {
+                localVue,
+                router
+            }).vm;
         });
-
         it('should allow if ageCheck is disabled', () => {
             sut.ageCheck = false;
             sut.submit();
-            expect(locationMock.path).toHaveBeenCalled();
+            expect(routerMockPush).toHaveBeenCalled();
         });
 
         it('should allow if user is 24', () => {
             sut.ageCheck = true;
             sut.age = 24;
             sut.submit();
-            expect(locationMock.path).toHaveBeenCalled();
+            expect(routerMockPush).toHaveBeenCalled();
         });
 
         it('should not allow if user is 12', () => {
@@ -63,15 +73,14 @@ xdescribe('PlaceOrderComponent', () => {
 
     describe('cancel', () => {
         beforeEach(() => {
-            sut = $componentController('roboReviewOrder', {
-                $location: locationMock,
-                orderService: orderServiceMock
-            });
+            sut = shallowMount(ReviewOrder, {
+                localVue,
+                router
+            }).vm;
         });
-
         it('should navigate back', () => {
             sut.cancel();
-            expect(locationMock.path).toHaveBeenCalled();
+            expect(routerMockPush).toHaveBeenCalled();
         });
     });
 });

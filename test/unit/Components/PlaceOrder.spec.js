@@ -1,16 +1,22 @@
 import PlaceOrder from '../../../src/components/PlaceOrder.vue';
-import { mount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
 
 describe('PlaceOrder', () => {
 
-  let sut, routerMock;
+  let sut, routerMockPush, localVue, router;
 
   beforeEach(() => {
-    sut = mount(PlaceOrder).vm;
-    routerMock = {
-      push: jest.fn()
-    };
-    sut.$router = routerMock;
+    localVue = createLocalVue();
+    localVue.use(VueRouter);
+    router = new VueRouter();
+
+    sut = shallowMount(PlaceOrder, {
+      localVue,
+      router
+    }).vm;
+
+    routerMockPush = jest.spyOn(router, 'push');
   });
 
   it('should have 3 drinks', () => {
@@ -49,6 +55,6 @@ describe('PlaceOrder', () => {
 
   it('should navigate to next page on submit', () => {
     sut.submit();
-    expect(routerMock.push).toHaveBeenCalled();
+    expect(routerMockPush).toHaveBeenCalled();
   });
 });
