@@ -7,7 +7,7 @@
       <div class="col-12">
         <p>Coming right up! ~bzzzt~</p>
         <form>
-          <button type="submit" class="btn btn-primary" @click.stop.prevent="newOrder">New order</button>
+          <router-link to="/" type="button" class="btn btn-primary">New order</router-link>
         </form>
       </div>
     </div>
@@ -26,12 +26,6 @@ export default {
       ),
       orderService: orderService
     };
-  },
-  methods: {
-    newOrder: function() {
-      this.orderService.clear();
-      this.$router.push("/");
-    }
   }
 };
 </script>

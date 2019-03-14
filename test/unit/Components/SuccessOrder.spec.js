@@ -30,8 +30,4 @@ describe('SuccessOrder', () => {
     it('should be constructed', () => {
         expect(sut).toBeTruthy();
     });
-    it('should navigate to initial page on new order', () => {
-        sut.newOrder();
-        expect(routerMockPush).toHaveBeenCalled();
-    });
 });
