@@ -1,8 +1,8 @@
 {
-  "name": "vue-tdd",
+  "name": "stryker-vue",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Example of Stryker mutation testing on Vue application",
+  "main": "index.html",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config webpack.config.js",
     "build": "webpack --config webpack.config.js",

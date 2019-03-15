@@ -35,9 +35,9 @@ describe('PlaceOrder', () => {
     expect(roboBeer.amount).toEqual(4);
   });
 
-  it('should go below 0 on decrement', () => {
+  it('shouldn`t go below 0 on decrement', () => {
     const roboBeer = { name: 'Robo Beer', amount: 0 };
-    sut.decrement(roboBeer)
+    sut.decrement(roboBeer);
     expect(roboBeer.amount).toEqual(0);
   });
 
@@ -46,7 +46,8 @@ describe('PlaceOrder', () => {
     sut.drinks[0].price = 2;
     sut.drinks[1].amount = 3;
     sut.drinks[1].price = 2.8;
-    expect(sut.totalPrice()).toEqual(2 * 2 + 3 * 2.8);
+    var expectedResult = (2 * 2) + (3 * 2.8);
+    expect(sut.totalPrice()).toEqual(expectedResult);
   });
 
   it('should not disable submit button if there are no drinks selected yet', () => {
