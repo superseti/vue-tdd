@@ -50,12 +50,18 @@ describe('PlaceOrder', () => {
     expect(sut.totalPrice()).toEqual(expectedResult);
   });
 
-  it('should not disable submit button if there are no drinks selected yet', () => {
-    expect(sut.submitEnabled()).toBeFalsy();
+  it('should disable submit button if there are no drinks selected yet', () => {
+    expect(sut.submitEnabled()).toBe(false);
+  });
+  it('should not disable submit button if there are drinks selected', () => {
+    sut.drinks[0].amount = 2;
+    sut.drinks[0].price = 2;
+    expect(sut.submitEnabled()).toBe(true);
   });
 
   it('should navigate to next page on submit', () => {
+    var expectedPath = 'ReviewOrder';
     sut.submit();
-    expect(routerMockPush).toHaveBeenCalled();
+    expect(routerMockPush).toHaveBeenCalledWith(expectedPath);
   });
 });

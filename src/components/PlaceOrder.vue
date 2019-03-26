@@ -68,10 +68,11 @@ export default {
       drink.amount++;
     },
     decrement: function(drink) {
-      drink.amount--;
-      if (drink.amount < 0) {
+      if (drink.amount <= 0) {
         drink.amount = 0;
+        return;
       }
+      drink.amount--;
     },
     totalPrice: function() {
       return this.drinks.reduce(

@@ -21,4 +21,28 @@ describe('OrderService', () => {
             expect(sut.currentOrder).toBe('foobar');
         });
     });
+
+    describe('clear', () => {
+        beforeEach(() => {
+            sut.currentOrder = 'anythingNotNull';
+        });
+        it('should set null the current order', () => {
+            sut.clear();
+            expect(sut.currentOrder).toBe(null);
+        });
+    });
+
+    describe('localStorage', () => {
+        var localStorageGetMock, variableName;
+
+        beforeEach(() => {
+            variableName = '_currentOrder';
+            localStorageGetMock = jest.spyOn(Storage.prototype, 'getItem');
+        });
+
+        it('should use _currentOrder as variable on get', () => {
+            sut.currentOrder;
+            expect(localStorageGetMock).toHaveBeenCalledWith(variableName);
+        });
+    });
 });

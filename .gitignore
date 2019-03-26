@@ -1,7 +1,5 @@
-.idea/
 .stryker-tmp/
 reports/
 node_modules/
 dist/
 npm-debug.log
-.nyc_output/

@@ -5,7 +5,7 @@ import { OrderService } from '../../../src/services/OrderService.js';
 
 describe('SuccessOrder', () => {
 
-    let sut, routerMockPush, localVue, router;
+    let sut, localVue, orderService, router, routerMockPush;
 
     beforeEach(() => {
         var order =
@@ -13,7 +13,8 @@ describe('SuccessOrder', () => {
                 { name: 'Robo Beer', price: 2, amount: 2 },
                 { name: 'Robo(w)ine', price: 3, amount: 1 }
             ];
-        new OrderService().currentOrder = order;
+        orderService = new OrderService();
+        orderService.currentOrder = order;
 
         localVue = createLocalVue()
         localVue.use(VueRouter);
@@ -29,5 +30,14 @@ describe('SuccessOrder', () => {
 
     it('should be constructed', () => {
         expect(sut).toBeTruthy();
+    });
+
+    it('numerOfDrinks', () => {
+        var order = orderService.currentOrder;
+        order.push({ name: 'Robo Beer', price: 2, amount: 2 });
+        order.push({ name: 'Robo(w)ine', price: 3, amount: 1 });
+        orderService.currentOrder = order;
+        var expectedNumberDrinks = 3;
+        expect(sut.numberOfDrinks).toBe(expectedNumberDrinks);
     });
 });

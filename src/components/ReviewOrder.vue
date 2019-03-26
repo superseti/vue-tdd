@@ -62,30 +62,25 @@ import { OrderService } from "../services/OrderService.js";
 export default {
   data() {
     const myOrderService = new OrderService();
-    let dataComponent = {
+    var myOrder = myOrderService.currentOrder;
+    return {
       orderService: myOrderService,
-      order: myOrderService.currentOrder,
-      numberOfDrinks: 0,
+      order: myOrder,
+      numberOfDrinks:
+        myOrder &&
+        myOrder.reduce(
+          (numberOfDrinks, drink) => numberOfDrinks + drink.amount,
+          0
+        ),
       age: 0,
-      ageCheck: true,
+      ageCheck: myOrder && myOrder.some(drink => drink.isAlcoholic),
       error: ""
     };
-
-    if (dataComponent.order) {
-      dataComponent.numberOfDrinks = dataComponent.order.reduce(
-        (numberOfDrinks, drink) => numberOfDrinks + drink.amount,
-        0
-      );
-      dataComponent.ageCheck = dataComponent.order.some(
-        drink => drink.isAlcoholic
-      );
-    }
-
-    return dataComponent;
   },
   mounted() {
     if (!this.order) {
       this.$router.push("/");
+      return;
     }
   },
   methods: {
